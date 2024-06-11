@@ -14,7 +14,6 @@ jobs:
           name: Install Serverless CLI and dependencies
           command: |
             sudo npm i -g serverless@2.72.4
-            npm install
 
       - run:
           name: Deploy Lambda Functions
