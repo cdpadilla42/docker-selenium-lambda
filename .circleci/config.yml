@@ -1,0 +1,32 @@
+version: 2.1
+
+jobs:
+  deploy:
+    docker:
+      - image: cimg/python:3.7.13-node
+    parameters:
+      stage:
+        type: string
+        default: staging
+    steps:
+      - checkout
+      - run:
+          name: Install Serverless CLI and dependencies
+          command: |
+            sudo npm i -g serverless@2.72.4
+            npm install
+
+      - run:
+          name: Deploy Lambda Functions
+          command: |
+            sls deploy
+
+workflows:
+  build-prodcution:
+    jobs:
+      - deploy:
+          name: deploy-production
+          stage: 'production'
+          filters:
+            branches:
+              only: main
