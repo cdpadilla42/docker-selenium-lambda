@@ -14,7 +14,7 @@ jobs:
           name: Install Serverless CLI and dependencies
           command: |
             sudo npm i -g serverless@2.72.4
-
+      - setup_remote_docker
       - run:
           name: Deploy Lambda Functions
           command: |
